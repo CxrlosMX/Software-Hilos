@@ -7,6 +7,7 @@ package lamina.principalclass;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -28,13 +29,16 @@ public class LaminaPrincipal extends JPanel {
     //Lamina Datos
     private JPanel laminaDatos;
     private JTextArea areaMensajes;
-
+    //Botones
+    private JPanel laminaBotones;
+    private JButton bIniciar;
+    //Lamina Botones
     public LaminaPrincipal() {
         //Asignando Layout Lamina Principal
         setLayout(new BorderLayout());
         //Instancias laminas
         laminaDatos = new JPanel();
-
+        laminaBotones = new JPanel();
         //------------------------------------------------Lamina datos
         laminaDatos.setLayout(new BorderLayout());
         areaMensajes = new JTextArea(5, 20);
@@ -43,10 +47,14 @@ public class LaminaPrincipal extends JPanel {
         JLabel t = new JLabel("DATOS");
         laminaDatos.add(t, BorderLayout.NORTH);
         laminaDatos.add(areaMensajes, BorderLayout.CENTER);
-        
+        //-------------Boton------------------------------------------------------
+        bIniciar = new JButton("INICIAR PROCESO");
+        laminaBotones.add(bIniciar);
+        //---------------------------------------------------
         
         //Agregando a la lamina principal
         add(laminaDatos, BorderLayout.WEST);
+        add(laminaBotones, BorderLayout.SOUTH);
     }
 
 }
