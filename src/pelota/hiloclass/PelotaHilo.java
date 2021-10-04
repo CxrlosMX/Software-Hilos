@@ -29,12 +29,12 @@ public class PelotaHilo implements Runnable {
     private static int idS = 1;
     private Pelota pelota;
     private JPanel lamina;
-    private Date inicio;
-    private Date fin;
+    private String inicio;
+    private String fin;
     private int id;
 
     //Constructor
-    public PelotaHilo(Pelota pelota, JPanel lamina, Date inicio, Date fin) {
+    public PelotaHilo(Pelota pelota, JPanel lamina, String inicio, String fin) {
         this.pelota = pelota;
         this.lamina = lamina;
         this.inicio = inicio;
@@ -70,19 +70,19 @@ public class PelotaHilo implements Runnable {
         this.lamina = lamina;
     }
 
-    public Date getInicio() {
+    public String getInicio() {
         return inicio;
     }
 
-    public void setInicio(Date inicio) {
+    public void setInicio(String inicio) {
         this.inicio = inicio;
     }
 
-    public Date getFin() {
+    public String getFin() {
         return fin;
     }
 
-    public void setFin(Date fin) {
+    public void setFin(String fin) {
         this.fin = fin;
     }
 

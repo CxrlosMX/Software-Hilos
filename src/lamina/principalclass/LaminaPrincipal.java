@@ -7,11 +7,18 @@ package lamina.principalclass;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import lamina.LaminaPelotas;
+import pelota.hiloclass.PelotaHilo;
+import pelotaclass.Pelota;
 
 /**
  *
@@ -65,6 +72,24 @@ public class LaminaPrincipal extends JPanel {
     /*
     Clase interna para el evento
     */
+   private class EventoInicio implements ActionListener{
+       
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(e.getSource()==bIniciar){
+                Pelota p=new Pelota();
+             //PelotaHilo pelota=new PelotaHilo(p, laminaPelota, dameHora(), null);
+            }
+           
+        }
    
+   }
+   /*
+   Mètodo que nos devuelve la hora actual
+   */
+   private String dameHora(){
+   DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+   return dtf.format(LocalDateTime.now());
+   }
 
 }
