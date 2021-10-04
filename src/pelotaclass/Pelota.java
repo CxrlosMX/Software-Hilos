@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ballclass;
+package pelotaclass;
 
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;

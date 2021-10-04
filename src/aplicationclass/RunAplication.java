@@ -6,6 +6,9 @@
 
 package aplicationclass;
 
+import javax.swing.JFrame;
+import marcoclass.Marco;
+
 /**
  *
  * @author: CxrlosMX
@@ -17,7 +20,8 @@ package aplicationclass;
  */
 public class RunAplication {
     public static void main(String[] args) {
-        
+        Marco marco=new Marco();
+        marco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
 }
