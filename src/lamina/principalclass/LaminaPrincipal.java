@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import lamina.LaminaPelotas;
 
 /**
  *
@@ -32,7 +33,9 @@ public class LaminaPrincipal extends JPanel {
     //Botones
     private JPanel laminaBotones;
     private JButton bIniciar;
-    //Lamina Botones
+    //Lamina Pelota
+    private LaminaPelotas laminaPelota;
+    
     public LaminaPrincipal() {
         //Asignando Layout Lamina Principal
         setLayout(new BorderLayout());
@@ -50,11 +53,13 @@ public class LaminaPrincipal extends JPanel {
         //-------------Boton------------------------------------------------------
         bIniciar = new JButton("INICIAR PROCESO");
         laminaBotones.add(bIniciar);
-        //---------------------------------------------------
-        
+        //-------------Lamina Pelota--------------------------------------
+        laminaPelota=new LaminaPelotas();
+        laminaPelota.setBackground(new Color(3, 100, 100));
         //Agregando a la lamina principal
         add(laminaDatos, BorderLayout.WEST);
         add(laminaBotones, BorderLayout.SOUTH);
+        add(laminaPelota,BorderLayout.CENTER);
     }
 
 }
