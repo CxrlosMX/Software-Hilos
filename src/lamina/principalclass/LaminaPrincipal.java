@@ -7,6 +7,7 @@ package lamina.principalclass;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -25,7 +26,6 @@ public class LaminaPrincipal extends JPanel {
      */
 
     //Lamina Datos
-
     private JPanel laminaDatos;
     private JTextArea areaMensajes;
 
@@ -34,18 +34,19 @@ public class LaminaPrincipal extends JPanel {
         setLayout(new BorderLayout());
         //Instancias laminas
         laminaDatos = new JPanel();
-        
+
         //------------------------------------------------Lamina datos
-        areaMensajes=new JTextArea(laminaDatos.getWidth(), laminaDatos.getHeight());
-        areaMensajes.setBackground(Color.yellow);
-        laminaDatos.add(areaMensajes);
-        
-        
-        
+        laminaDatos.setLayout(new BorderLayout());
+        areaMensajes = new JTextArea(5, 20);
+        areaMensajes.setLineWrap(true);//Salto de lineas automatico
+        areaMensajes.setBackground(Color.DARK_GRAY.brighter().brighter().brighter());
+        JLabel t = new JLabel("DATOS");
+        laminaDatos.add(t, BorderLayout.NORTH);
+        laminaDatos.add(areaMensajes, BorderLayout.CENTER);
         
         
         //Agregando a la lamina principal
-        add(laminaDatos,BorderLayout.EAST);
+        add(laminaDatos, BorderLayout.WEST);
     }
 
 }
