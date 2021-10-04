@@ -7,6 +7,7 @@ package marcoclass;
 
 import javax.swing.JFrame;
 import lamina.LaminaPelotas;
+import lamina.principalclass.LaminaPrincipal;
 
 /**
  *
@@ -27,7 +28,7 @@ public class Marco extends JFrame {
         setSize(600, 800);
         setLocation(500, 200);
         setTitle("Hilos");
-        LaminaPelotas lamina = new LaminaPelotas(); //Instancia laminaPelotas
+        LaminaPrincipal lamina = new LaminaPrincipal(); //Instancia 
         add(lamina); //Add laminaPelotas a nuestro marco
 
     }
