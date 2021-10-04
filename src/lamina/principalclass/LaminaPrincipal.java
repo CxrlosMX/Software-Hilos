@@ -61,5 +61,10 @@ public class LaminaPrincipal extends JPanel {
         add(laminaBotones, BorderLayout.SOUTH);
         add(laminaPelota,BorderLayout.CENTER);
     }
+    
+    /*
+    Clase interna para el evento
+    */
+   
 
 }
