@@ -30,10 +30,11 @@ import pelotaclass.Pelota;
  *
  */
 public class LaminaPrincipal extends JPanel {
+   
     /*
      Para la realizaciòn de la interfaz grafica se planifico en un MockUp
      */
-
+    private static String cadena;
     //Lamina Datos
     private JPanel laminaDatos;
     private JTextArea areaMensajes;
@@ -42,8 +43,12 @@ public class LaminaPrincipal extends JPanel {
     private JButton bIniciar;
     //Lamina Pelota
     private LaminaPelotas laminaPelota;
+    //Prueba
+    private JPanel lamina;
+    
     
     public LaminaPrincipal() {
+        EventoInicio evento=new EventoInicio();
         //Asignando Layout Lamina Principal
         setLayout(new BorderLayout());
         //Instancias laminas
@@ -60,10 +65,16 @@ public class LaminaPrincipal extends JPanel {
         //-------------Boton------------------------------------------------------
         bIniciar = new JButton("INICIAR PROCESO");
         laminaBotones.add(bIniciar);
+        bIniciar.addActionListener(evento);
         //-------------Lamina Pelota--------------------------------------
         laminaPelota=new LaminaPelotas();
         laminaPelota.setBackground(new Color(3, 100, 100));
+        
+        //-----------------
+        lamina=new JPanel();
+        
         //Agregando a la lamina principal
+        add(lamina,BorderLayout.EAST);
         add(laminaDatos, BorderLayout.WEST);
         add(laminaBotones, BorderLayout.SOUTH);
         add(laminaPelota,BorderLayout.CENTER);
@@ -78,7 +89,13 @@ public class LaminaPrincipal extends JPanel {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource()==bIniciar){
                 Pelota p=new Pelota();
-             //PelotaHilo pelota=new PelotaHilo(p, laminaPelota, dameHora(), null);
+                laminaPelota.addPelota(p);
+                PelotaHilo pelota=new PelotaHilo(p, laminaPelota, dameHora(), null);
+                Thread hilo=new Thread(pelota);
+               cadena+=pelota.toString();
+               areaMensajes.setText(cadena);
+                hilo.start();
+             
             }
            
         }

@@ -30,6 +30,12 @@ public class LaminaPelotas extends JPanel {
     public LaminaPelotas() { //Creamos un constructor
         pelotas = new ArrayList<>(); //Iniciamos nuestro ArrayList
     }
+    /*
+    Mètodo para agregar una pelota
+    */
+    public void addPelota(Pelota p){
+    pelotas.add(p);
+    }
     
     @Override
     public void paintComponents(Graphics g) { //Sobreescribimos nuestro método paintComponents para poder dibujar

@@ -5,6 +5,7 @@
  */
 package pelota.hiloclass;
 
+import java.awt.Component;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,13 +29,13 @@ public class PelotaHilo implements Runnable {
 
     private static int idS = 1;
     private Pelota pelota;
-    private JPanel lamina;
+    private Component lamina;
     private String inicio;
     private String fin;
     private int id;
 
     //Constructor
-    public PelotaHilo(Pelota pelota, JPanel lamina, String inicio, String fin) {
+    public PelotaHilo(Pelota pelota, Component lamina, String inicio, String fin) {
         this.pelota = pelota;
         this.lamina = lamina;
         this.inicio = inicio;
@@ -45,10 +46,12 @@ public class PelotaHilo implements Runnable {
     //Dentro de nuestro mètodo Run se realizara la tarea
     @Override
     public void run() {
+        pelota.mueve_pelota(lamina.getBounds());
+        lamina.paint(lamina.getGraphics());
         try {
+
             Thread.sleep(4);
-            pelota.mueve_pelota(lamina.getBounds());
-            lamina.print(lamina.getGraphics());
+
         } catch (InterruptedException ex) {
             JOptionPane.showMessageDialog(lamina, ex.getMessage(), "Error", 0);
         }
@@ -62,7 +65,7 @@ public class PelotaHilo implements Runnable {
         this.pelota = pelota;
     }
 
-    public JPanel getLamina() {
+    public Component getLamina() {
         return lamina;
     }
 
