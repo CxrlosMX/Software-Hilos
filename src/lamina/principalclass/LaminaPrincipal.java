@@ -7,16 +7,11 @@ package lamina.principalclass;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -35,20 +30,34 @@ import pelotaclass.Pelota;
  */
 public class LaminaPrincipal extends JPanel {
 
+    /*
+     Para la realizaciòn de la interfaz grafica se planifico en un MockUp
+     */
+    private String cadena;
+    //Lamina Datos
+    private JPanel laminaDatos;
+    private JTextArea areaMensajes;
+    //Botones
+    private JPanel laminaBotones;
+    private JButton bIniciar;
+    //Lamina Pelota
+    private LaminaPelota laminaPelota;
+    //Prueba
+    private JPanel lamina;
+
     public LaminaPrincipal() {
-        setLayout(new BorderLayout());
-        lamina = new LaminaPelota();
-        lamina.setBackground(Color.PINK);
-        add(lamina, BorderLayout.CENTER);
-        cadena="";
-        JPanel laminaBotones = new JPanel();
-        laminaE = new JPanel();
-        laminaE.setBackground(Color.yellow);
         /*
-         -------------------
+         Evento
          */
+        EventoInicio evento = new EventoInicio();
+
+        cadena = "";
+        //Asignando Layout Lamina Principal
+        setLayout(new BorderLayout());
+        //Instancias laminas
         laminaDatos = new JPanel();
-        laminaDatos.setBackground(Color.BLUE);
+        laminaBotones = new JPanel();
+        //------------------------------------------------Lamina datos
         laminaDatos.setLayout(new BorderLayout());
         areaMensajes = new JTextArea(5, 20);
         areaMensajes.setLineWrap(true);//Salto de lineas automatico
@@ -56,68 +65,76 @@ public class LaminaPrincipal extends JPanel {
         JLabel t = new JLabel("DATOS");
         laminaDatos.add(t, BorderLayout.NORTH);
         laminaDatos.add(areaMensajes, BorderLayout.CENTER);
-        ///-----------------
+        //-------------Boton------------------------------------------------------
+        bIniciar = new JButton("INICIAR PROCESO");
+        bIniciar.addActionListener(evento);
+        laminaBotones.add(bIniciar);
 
-        //---
-        ponerBoton(laminaBotones, "Dale!", new ActionListener() {
+        //-------------Lamina Pelota--------------------------------------
+        laminaPelota = new LaminaPelota();
+        laminaPelota.setBackground(new Color(3, 100, 100));
 
-            public void actionPerformed(ActionEvent evento) {
+        //-----------------
+        lamina = new JPanel();
 
-                comienza_el_juego();
-            }
-
-        });
-
-        ponerBoton(laminaBotones, "Salir", new ActionListener() {
-
-            public void actionPerformed(ActionEvent evento) {
-
-                System.exit(0);
-
-            }
-
-        });
-
-        add(laminaBotones, BorderLayout.SOUTH);
+        //Agregando a la lamina principal
+        add(lamina, BorderLayout.EAST);
         add(laminaDatos, BorderLayout.EAST);
-        // add(laminaE,BorderLayout.EAST);
+        add(laminaBotones, BorderLayout.SOUTH);
+        add(laminaPelota, BorderLayout.CENTER);
     }
 
-    //Ponemos botones
-    public void ponerBoton(Container c, String titulo, ActionListener oyente) {
+    /*
+     Clase interna para el evento
+     */
+    private class EventoInicio implements ActionListener {
 
-        JButton boton = new JButton(titulo);
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == bIniciar) {
+                Pelota p = new Pelota();
+                laminaPelota.add(p);
+                Runnable pelota = new PelotaHilo(p, laminaPelota, dameHora());
+                Thread hilo = new Thread(pelota);
+                cadena += pelota.toString();
+                areaMensajes.setText(cadena);
+                hilo.start();
 
-        c.add(boton);
+                /*Pelota p = new Pelota();
+                 laminaPelota.add(p);
+                 for (int i = 1; i <= 3000; i++) {
+                 p.mueve_pelota(laminaPelota.getBounds());
+                 laminaPelota.paint(laminaPelota.getGraphics());
+                 try {
 
-        boton.addActionListener(oyente);
+                 Thread.sleep(4);
+                 } catch (InterruptedException ex) {
+                 System.out.println(ex.getMessage());
+                 }
+                 }*/
+            }
+
+        }
 
     }
+    /*
+     Comienza el juego 
+     */
 
-    //Añade pelota y la bota 1000 veces
     public void comienza_el_juego() {
-
         Pelota p = new Pelota();
-
-        lamina.add(p);
-
-        PelotaHilo r = new PelotaHilo(p, lamina, dameHora());
-        cadena += r.toString();
-        areaMensajes.setText(cadena);
-        Thread hilo = new Thread(r);
+        laminaPelota.add(p);
+        PelotaHilo pH = new PelotaHilo(p, laminaPelota, dameHora());
+        Thread hilo = new Thread(pH);
         hilo.start();
-       
-
     }
 
+    /*
+     Mètodo que nos devuelve la hora actual
+     */
     private String dameHora() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         return dtf.format(LocalDateTime.now());
     }
 
-    private LaminaPelota lamina;
-    private JPanel laminaDatos;
-    private JTextArea areaMensajes;
-    private JPanel laminaE;
-    private static String cadena;
 }

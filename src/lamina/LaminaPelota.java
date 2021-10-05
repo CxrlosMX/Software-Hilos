@@ -25,7 +25,11 @@ import javax.swing.JPanel;
 public class LaminaPelota extends JPanel {
 
     //Creamos un arrayList de objetos de la clase Pelota
-    private ArrayList<Pelota> pelotas = new ArrayList<>();
+    private ArrayList<Pelota> pelotas;
+
+    public LaminaPelota() {
+        pelotas = new ArrayList<>();
+    }
 
     public void add(Pelota p) {
         pelotas.add(p);
