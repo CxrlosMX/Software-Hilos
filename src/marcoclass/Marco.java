@@ -6,7 +6,7 @@
 package marcoclass;
 
 import javax.swing.JFrame;
-import lamina.LaminaPelotas;
+import lamina.LaminaPelota;
 import lamina.principalclass.LaminaPrincipal;
 
 /**

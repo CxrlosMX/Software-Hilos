@@ -18,7 +18,6 @@ import java.awt.geom.Rectangle2D;
  *
  */
 public class Pelota {
-
     // Mueve la pelota invirtiendo posición si choca con límites
     public void mueve_pelota(Rectangle2D limites) {
 

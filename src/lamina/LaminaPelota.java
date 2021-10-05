@@ -8,9 +8,9 @@ package lamina;
 import pelotaclass.Pelota;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
-import javax.swing.JFrame;
+
 import javax.swing.JPanel;
 
 /**
@@ -22,24 +22,18 @@ import javax.swing.JPanel;
  * @Date: 30-sep-2021
  *
  */
-public class LaminaPelotas extends JPanel {
+public class LaminaPelota extends JPanel {
 
     //Creamos un arrayList de objetos de la clase Pelota
-    private ArrayList<Pelota> pelotas;
-    
-    public LaminaPelotas() { //Creamos un constructor
-        pelotas = new ArrayList<>(); //Iniciamos nuestro ArrayList
+    private ArrayList<Pelota> pelotas = new ArrayList<>();
+
+    public void add(Pelota p) {
+        pelotas.add(p);
     }
-    /*
-    Mètodo para agregar una pelota
-    */
-    public void addPelota(Pelota p){
-    pelotas.add(p);
-    }
-    
+
     @Override
     public void paintComponents(Graphics g) { //Sobreescribimos nuestro método paintComponents para poder dibujar
-        super.paintComponents(g); //Llamamos al constructor del método
+        super.paintComponent(g); //Llamamos al constructor del método
         Graphics2D g2 = (Graphics2D) g;  //Creamos un objeto de la clase Graphics2D que nos permitira dibujar figuras etc
 
         for (Pelota i : pelotas) {//Bucle para dibujar nuestras pelotas cada que se muevan
@@ -50,5 +44,8 @@ public class LaminaPelotas extends JPanel {
             g2.fill(i.getShape());
         }
     }
-    
+    /*
+     Mètodo para agregar una pelota
+     */
+
 }

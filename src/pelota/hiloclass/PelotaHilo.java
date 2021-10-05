@@ -6,12 +6,13 @@
 package pelota.hiloclass;
 
 import java.awt.Component;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import lamina.LaminaPelota;
 import pelotaclass.Pelota;
+
 
 /**
  *
@@ -23,44 +24,53 @@ import pelotaclass.Pelota;
  *
  */
 public class PelotaHilo implements Runnable {
-    /*
+     /*
      Atributos
      */
 
     private static int idS = 1;
     private Pelota pelota;
-    private Component lamina;
+    private LaminaPelota lamina;
     private String inicio;
     private String fin;
     private int id;
 
     //Constructor
-    public PelotaHilo(Pelota pelota, Component lamina, String inicio, String fin) {
+    public PelotaHilo(Pelota pelota, LaminaPelota lamina, String inicio) {
         this.pelota = pelota;
         this.lamina = lamina;
         this.inicio = inicio;
-        this.fin = fin;
+        this.fin = null;
         id = idS++;
     }
 
     //Dentro de nuestro mètodo Run se realizara la tarea
     @Override
     public void run() {
-        pelota.mueve_pelota(lamina.getBounds());
-        lamina.paint(lamina.getGraphics());
-        try {
 
-            Thread.sleep(4);
+        for (int i = 0; i < 3000; i++) {
+            pelota.mueve_pelota(lamina.getBounds());
+            lamina.paint(lamina.getGraphics());
 
-        } catch (InterruptedException ex) {
-            JOptionPane.showMessageDialog(lamina, ex.getMessage(), "Error", 0);
+            try {
+
+                Thread.sleep(4);
+
+            } catch (InterruptedException ex) {
+                JOptionPane.showMessageDialog(lamina, ex.getMessage(), "Error", 0);
+            }
+            if (Thread.interrupted()) {
+                fin=dameHora();
+            }
+
         }
     }
 
     public Pelota getPelota() {
         return pelota;
     }
-
+    
+    
     public void setPelota(Pelota pelota) {
         this.pelota = pelota;
     }
@@ -69,10 +79,9 @@ public class PelotaHilo implements Runnable {
         return lamina;
     }
 
-    public void setLamina(JPanel lamina) {
-        this.lamina = lamina;
-    }
-
+    /* public void setLamina(JPanel lamina) {
+     this.lamina = lamina;
+     }*/
     public String getInicio() {
         return inicio;
     }
@@ -89,9 +98,23 @@ public class PelotaHilo implements Runnable {
         this.fin = fin;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    private String dameHora() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        return dtf.format(LocalDateTime.now());
+    }
+
     @Override
     public String toString() {
         return "Thread " + id + "\nInicio Proceso: " + inicio + "\nFin Proceso: " + fin + "\n";
     }
+
 
 }
