@@ -27,7 +27,7 @@ public class Marco extends JFrame {
         setVisible(true);
         setSize(600, 800);
         setLocation(500, 200);
-        setTitle("Hilos");
+        setTitle("Hilos Software");
         LaminaPrincipal lamina = new LaminaPrincipal(); //Instancia 
         add(lamina); //Add laminaPelotas a nuestro marco
 

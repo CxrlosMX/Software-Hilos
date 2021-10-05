@@ -39,7 +39,7 @@ public class LaminaPrincipal extends JPanel {
     private JTextArea areaMensajes;
     //Botones
     private JPanel laminaBotones;
-    private JButton bIniciar;
+    private JButton bIniciar, bSalir;
     //Lamina Pelota
     private LaminaPelota laminaPelota;
     //Prueba
@@ -65,11 +65,14 @@ public class LaminaPrincipal extends JPanel {
         JLabel t = new JLabel("DATOS");
         laminaDatos.add(t, BorderLayout.NORTH);
         laminaDatos.add(areaMensajes, BorderLayout.CENTER);
-        //-------------Boton------------------------------------------------------
+        //-------------Botones------------------------------------------------------
         bIniciar = new JButton("INICIAR PROCESO");
         bIniciar.addActionListener(evento);
         laminaBotones.add(bIniciar);
-
+        //--------------------------------
+        bSalir = new JButton("Salir");
+        bSalir.addActionListener(evento);
+        laminaBotones.add(bSalir);
         //-------------Lamina Pelota--------------------------------------
         laminaPelota = new LaminaPelota();
         laminaPelota.setBackground(new Color(3, 100, 100));
@@ -99,35 +102,15 @@ public class LaminaPrincipal extends JPanel {
                 cadena += pelota.toString();
                 areaMensajes.setText(cadena);
                 hilo.start();
-
-                /*Pelota p = new Pelota();
-                 laminaPelota.add(p);
-                 for (int i = 1; i <= 3000; i++) {
-                 p.mueve_pelota(laminaPelota.getBounds());
-                 laminaPelota.paint(laminaPelota.getGraphics());
-                 try {
-
-                 Thread.sleep(4);
-                 } catch (InterruptedException ex) {
-                 System.out.println(ex.getMessage());
-                 }
-                 }*/
+            }
+            if(e.getSource()==bSalir){
+            System.exit(0);
             }
 
         }
 
     }
-    /*
-     Comienza el juego 
-     */
 
-    public void comienza_el_juego() {
-        Pelota p = new Pelota();
-        laminaPelota.add(p);
-        PelotaHilo pH = new PelotaHilo(p, laminaPelota, dameHora());
-        Thread hilo = new Thread(pH);
-        hilo.start();
-    }
 
     /*
      Mètodo que nos devuelve la hora actual
