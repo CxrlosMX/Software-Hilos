@@ -35,15 +35,15 @@ public class LaminaPrincipal extends JPanel {
      */
     private String cadena;
     //Lamina Datos
-    private JPanel laminaDatos;
-    private JTextArea areaMensajes;
+    private final JPanel laminaDatos;
+    private final JTextArea areaMensajes;
     //Botones
-    private JPanel laminaBotones;
-    private JButton bIniciar, bSalir;
+    private final JPanel laminaBotones;
+    private final JButton bIniciar, bSalir;
     //Lamina Pelota
-    private LaminaPelota laminaPelota;
+    private final LaminaPelota laminaPelota;
     //Prueba
-    private JPanel lamina;
+    private final JPanel lamina;
 
     public LaminaPrincipal() {
         /*

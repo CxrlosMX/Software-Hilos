@@ -30,7 +30,7 @@ public class PelotaHilo implements Runnable {
 
     private static int idS = 1;
     private Pelota pelota;
-    private LaminaPelota lamina;
+    private final LaminaPelota lamina;
     private String inicio;
     private String fin;
     private int id;
