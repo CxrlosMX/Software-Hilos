@@ -46,13 +46,14 @@ public class LaminaPrincipal extends JPanel {
     private final JPanel laminaExtra;
 
     public LaminaPrincipal() {
-       
+        //Cadena
         cadena = "";
         //Asignando Layout Lamina Principal
         setLayout(new BorderLayout());
         //Instancias laminas
         laminaDatos = new JPanel();
         laminaBotones = new JPanel();
+        laminaExtra = new JPanel();
         //------------------------------------------------Lamina datos
         laminaDatos.setLayout(new BorderLayout());
         areaMensajes = new JTextArea(5, 20);
@@ -63,18 +64,13 @@ public class LaminaPrincipal extends JPanel {
         laminaDatos.add(areaMensajes, BorderLayout.CENTER);
         //-------------Botones------------------------------------------------------
         bIniciar = new JButton("INICIAR PROCESO");
-        bIniciar.addActionListener(new EventoInicio());
-        laminaBotones.add(bIniciar);
+        colocarBoton(bIniciar, new EventoInicio(), laminaBotones);
         //--------------------------------
-        bSalir = new JButton("Salir");
-        bSalir.addActionListener(new EventoInicio());
-        laminaBotones.add(bSalir);
+        bSalir = new JButton("SALIR");
+        colocarBoton(bSalir, new EventoInicio(), laminaBotones);
         //-------------Lamina Pelota--------------------------------------
         laminaPelota = new LaminaPelota();
         laminaPelota.setBackground(new Color(3, 100, 100));
-
-        //-----------------
-        laminaExtra = new JPanel();
 
         //Agregando a la lamina principal
         add(laminaExtra, BorderLayout.EAST);
@@ -83,9 +79,13 @@ public class LaminaPrincipal extends JPanel {
         add(laminaPelota, BorderLayout.CENTER);
     }
 
-    /*
-     Clase interna para el evento
-     */
+    //Método que coloca botones
+    public void colocarBoton(JButton b, ActionListener e, JPanel lamina) {
+        b.addActionListener(e);
+        lamina.add(b);
+    }
+
+    //Clase interna para el evento
     private class EventoInicio implements ActionListener {
 
         @Override
@@ -95,12 +95,12 @@ public class LaminaPrincipal extends JPanel {
                 laminaPelota.add(p);
                 Runnable pelota = new PelotaHilo(p, laminaPelota, dameHora());
                 Thread hilo = new Thread(pelota);
-                cadena += pelota.toString()+"\n";
+                cadena += pelota.toString() + "\n";
                 areaMensajes.setText(cadena);
                 hilo.start();
             }
-            if(e.getSource()==bSalir){
-            System.exit(0);
+            if (e.getSource() == bSalir) {
+                System.exit(0);
             }
 
         }
