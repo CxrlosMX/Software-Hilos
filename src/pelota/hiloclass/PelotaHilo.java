@@ -9,10 +9,8 @@ import java.awt.Component;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import lamina.LaminaPelota;
 import pelotaclass.Pelota;
-
 
 /**
  *
@@ -24,7 +22,7 @@ import pelotaclass.Pelota;
  *
  */
 public class PelotaHilo implements Runnable {
-     /*
+    /*
      Atributos
      */
 
@@ -48,8 +46,15 @@ public class PelotaHilo implements Runnable {
     @Override
     public void run() {
 
-        for (int i = 0; i < 3000; i++) {
+        for (int i = 0; i <=3000; i++) {
+            /*
+             public Rectangle getBounds(Rectangle rv)
+
+             Stores the bounds of this component into "return value" rv and returns rv. If rv is null a new Rectangle is allocated. 
+             This version of getBounds is useful if the caller wants to avoid allocating a new Rectangle object on the heap.
+             */
             pelota.mueve_pelota(lamina.getBounds());
+
             lamina.paint(lamina.getGraphics());
 
             try {
@@ -59,18 +64,17 @@ public class PelotaHilo implements Runnable {
             } catch (InterruptedException ex) {
                 JOptionPane.showMessageDialog(lamina, ex.getMessage(), "Error", 0);
             }
-            if (Thread.interrupted()) {
-                fin=dameHora();
+           
+            if(i==3000){
+                JOptionPane.showMessageDialog(lamina, "Thread "+id+"\nTerminado: "+dameHora(),  "Thread "+id+" Terminado", 1);
             }
-
         }
     }
 
     public Pelota getPelota() {
         return pelota;
     }
-    
-    
+
     public void setPelota(Pelota pelota) {
         this.pelota = pelota;
     }
@@ -113,8 +117,8 @@ public class PelotaHilo implements Runnable {
 
     @Override
     public String toString() {
-        return "Thread " + id + "\nInicio Proceso: " + inicio + "\nFin Proceso: " + fin + "\n";
+        return "Thread " + id + "\nInicio Proceso: " + inicio;
+        // + "\nFin Proceso: " + fin + "\n"
     }
-
 
 }

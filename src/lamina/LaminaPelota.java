@@ -36,10 +36,10 @@ public class LaminaPelota extends JPanel {
     }
 
     @Override
-    public void paintComponents(Graphics g) { //Sobreescribimos nuestro método paintComponents para poder dibujar
+    public void paintComponent(Graphics g) { //Sobreescribimos nuestro método paintComponents para poder dibujar
         super.paintComponent(g); //Llamamos al constructor del método
         Graphics2D g2 = (Graphics2D) g;  //Creamos un objeto de la clase Graphics2D que nos permitira dibujar figuras etc
-
+        //Lo que realizamos es un casting.
         for (Pelota i : pelotas) {//Bucle para dibujar nuestras pelotas cada que se muevan
             /*
              Utilizamos el mètodo fill:

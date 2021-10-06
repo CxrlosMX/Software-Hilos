@@ -25,6 +25,7 @@ public class Marco extends JFrame {
 
     public Marco() {
         setVisible(true);
+        setResizable(false);
         setSize(600, 800);
         setLocation(500, 200);
         setTitle("Hilos Software");

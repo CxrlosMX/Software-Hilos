@@ -43,14 +43,10 @@ public class LaminaPrincipal extends JPanel {
     //Lamina Pelota
     private final LaminaPelota laminaPelota;
     //Prueba
-    private final JPanel lamina;
+    private final JPanel laminaExtra;
 
     public LaminaPrincipal() {
-        /*
-         Evento
-         */
-        EventoInicio evento = new EventoInicio();
-
+       
         cadena = "";
         //Asignando Layout Lamina Principal
         setLayout(new BorderLayout());
@@ -67,21 +63,21 @@ public class LaminaPrincipal extends JPanel {
         laminaDatos.add(areaMensajes, BorderLayout.CENTER);
         //-------------Botones------------------------------------------------------
         bIniciar = new JButton("INICIAR PROCESO");
-        bIniciar.addActionListener(evento);
+        bIniciar.addActionListener(new EventoInicio());
         laminaBotones.add(bIniciar);
         //--------------------------------
         bSalir = new JButton("Salir");
-        bSalir.addActionListener(evento);
+        bSalir.addActionListener(new EventoInicio());
         laminaBotones.add(bSalir);
         //-------------Lamina Pelota--------------------------------------
         laminaPelota = new LaminaPelota();
         laminaPelota.setBackground(new Color(3, 100, 100));
 
         //-----------------
-        lamina = new JPanel();
+        laminaExtra = new JPanel();
 
         //Agregando a la lamina principal
-        add(lamina, BorderLayout.EAST);
+        add(laminaExtra, BorderLayout.EAST);
         add(laminaDatos, BorderLayout.EAST);
         add(laminaBotones, BorderLayout.SOUTH);
         add(laminaPelota, BorderLayout.CENTER);
@@ -99,7 +95,7 @@ public class LaminaPrincipal extends JPanel {
                 laminaPelota.add(p);
                 Runnable pelota = new PelotaHilo(p, laminaPelota, dameHora());
                 Thread hilo = new Thread(pelota);
-                cadena += pelota.toString();
+                cadena += pelota.toString()+"\n";
                 areaMensajes.setText(cadena);
                 hilo.start();
             }

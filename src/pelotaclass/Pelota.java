@@ -18,7 +18,9 @@ import java.awt.geom.Rectangle2D;
  *
  */
 public class Pelota {
+
     // Mueve la pelota invirtiendo posición si choca con límites
+
     public void mueve_pelota(Rectangle2D limites) {
 
         x += dx;
@@ -60,6 +62,10 @@ public class Pelota {
     public Ellipse2D getShape() {
 
         return new Ellipse2D.Double(x, y, TAMX, TAMY);
+        /*
+         Ellipse2D.Double
+         The Double class defines an ellipse specified in double precision.
+         */
 
     }
 
