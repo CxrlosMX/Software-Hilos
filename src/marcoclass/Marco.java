@@ -5,8 +5,10 @@
  */
 package marcoclass;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import lamina.LaminaPelota;
 import lamina.principalclass.LaminaPrincipal;
 
 /**

@@ -7,6 +7,7 @@ package lamina.principalclass;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
@@ -30,9 +31,9 @@ import pelotaclass.Pelota;
  */
 public class LaminaPrincipal extends JPanel {
 
-    /*
-     Para la realizaciòn de la interfaz grafica se planifico en un MockUp
-     */
+    
+     //Para la realizaciòn de la interfaz grafica se planifico en un MockUp
+     
     private String cadena;
     //Lamina Datos
     private final JPanel laminaDatos;
@@ -60,6 +61,7 @@ public class LaminaPrincipal extends JPanel {
         areaMensajes.setLineWrap(true);//Salto de lineas automatico
         areaMensajes.setBackground(Color.DARK_GRAY.brighter().brighter().brighter());
         JLabel t = new JLabel("DATOS");
+        t.setFont(new Font("Serif",Font.BOLD , 20));
         laminaDatos.add(t, BorderLayout.NORTH);
         laminaDatos.add(areaMensajes, BorderLayout.CENTER);
         //-------------Botones------------------------------------------------------
